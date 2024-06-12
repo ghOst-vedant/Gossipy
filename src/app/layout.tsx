@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-
+import { cn } from "@/lib/util";
+import Navbar from "@/components/Navbar";
+import { ClerkProvider } from "@clerk/nextjs";
+import Providers from "@/components/Providers";
+import "react-loading-skeleton/dist/skeleton.css";
+import { ThemeProvider } from "@/components/theme-provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -15,8 +20,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+    <ClerkProvider>
+      <html lang="en" className="dark">
+        <Providers>
+          <body
+            className={cn(
+              "min-h-screen font-sans antialiased dark:bg-black ",
+              inter.className
+            )}
+          >
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <Navbar />
+              {children}
+            </ThemeProvider>
+          </body>
+        </Providers>
+      </html>
+    </ClerkProvider>
   );
 }
