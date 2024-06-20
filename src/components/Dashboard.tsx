@@ -1,9 +1,9 @@
 "use client";
 
-import { Ghost, Loader, MessageSquare, Plus, Trash } from "lucide-react";
+import { Ghost, Loader2, MessageSquare, Plus, Trash } from "lucide-react";
 import UploadButton from "./UploadButton";
 import { trpc } from "@/app/_trpc/client";
-import format, { formatDate } from "date-fns";
+import { formatDate } from "date-fns";
 import Skeleton from "react-loading-skeleton";
 import Link from "next/link";
 import { Button } from "./ui/button";
@@ -46,14 +46,14 @@ const Dashboard = () => {
             .map((file) => (
               <li
                 key={file.id}
-                className="col-span-1 divide-y border dark:border-none divide-gray-200 dark:divide-zinc-600 rounded-lg bg-white dark:bg-gray-950 transition hover:shadow-lg "
+                className="col-span-1 divide-y border dark:border-none divide-gray-200 dark:divide-zinc-600 rounded-lg bg-white dark:bg-zinc-900 transition hover:shadow-lg "
               >
                 <Link
                   href={`/dashboard/${file.id}`}
                   className=" flex flex-col gap-2 "
                 >
                   <div className=" flex justify-between  items-center w-full pt-6 px-6 space-x-6 ">
-                    <div className=" h-10 w-10 flex-shrink-0 rounded-full bg-gradient-to-r to-gray-400 dark:to-gray-200 dark:from-zinc-600 from-zinc-900" />
+                    <div className=" h-10 w-10 flex-shrink-0 rounded-full bg-gradient-to-r to-gray-400 dark:to-gray-900 dark:from-zinc-700 from-zinc-900 dark:border" />
                     <div className=" flex-1 truncate">
                       <div className="flex items-center space-x-3">
                         <h3 className=" truncate text-gl font-medium text-zinc-900 dark:text-zinc-100">
@@ -66,7 +66,7 @@ const Dashboard = () => {
                 <div className=" px-6 mt-4 grid grid-cols-3 place-items-center py-2 gap-6 text-xs text-zinc-500">
                   <div className=" flex items-center gap-2  dark:text-zinc-200">
                     <Plus className="h-4 w-4 dark:text-zinc-100" />
-                    {formatDate(new Date(file.createdAt), "MMM YYY")}
+                    {formatDate(new Date(file.createdAt), "MMM yyy")}
                   </div>
                   <div className=" flex items-center gap-2  dark:text-zinc-200">
                     <MessageSquare className="h-4 w-4 dark:text-zinc-100" />
@@ -79,7 +79,7 @@ const Dashboard = () => {
                     onClick={() => deleteFile({ id: file.id })}
                   >
                     {nowDeleting === file.id ? (
-                      <Loader className="h-4 w-4 animate-spin" />
+                      <Loader2 className="h-4 w-4 animate-spin" />
                     ) : (
                       <Trash className="h-4 w-4" />
                     )}
@@ -96,7 +96,7 @@ const Dashboard = () => {
           <h3 className="font-semibold text-xl">
             This place is waiting for your first PDF upload.....
           </h3>
-          <p> Let’s fill it with something amazing! </p>
+          <p> Let's fill it with something amazing! </p>
         </div>
       )}
     </main>

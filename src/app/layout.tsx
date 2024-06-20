@@ -7,6 +7,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import Providers from "@/components/Providers";
 import "react-loading-skeleton/dist/skeleton.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/toaster";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -35,6 +36,7 @@ export default function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
+              <Toaster />
               <Navbar />
               {children}
             </ThemeProvider>
